@@ -14,3 +14,9 @@ config/name="Pong Ball"
 run/main_scene="res://Scenes/main.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+3d/default_gravity=10.0
+3d/default_gravity_vector=Vector3(0, -1.2, 0)

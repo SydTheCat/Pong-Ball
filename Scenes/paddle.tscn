@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://drv3eh5haopct"]
 
-[ext_resource type="Script" uid="uid://ct36lk0olhkpv" path="res://Scenes/paddle.gd" id="1_krcey"]
+[ext_resource type="Script" uid="uid://ct36lk0olhkpv" path="res://Scripts/paddle.gd" id="1_krcey"]
 [ext_resource type="ArrayMesh" uid="uid://bpwvbtfhs7gla" path="res://Assets/Paddle.obj" id="1_nxw3c"]
 [ext_resource type="Texture2D" uid="uid://bq3aaw63j20bv" path="res://Assets/wood.jpg" id="3_fe6ia"]
 

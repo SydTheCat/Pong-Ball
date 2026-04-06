@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://v6kp0v3dpwrb"]
+[gd_scene load_steps=7 format=3 uid="uid://v6kp0v3dpwrb"]
+
+[ext_resource type="Script" uid="uid://7fme15d61xol" path="res://Scripts/hoop_score.gd" id="1_score"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tn8wj"]
 
@@ -10,6 +12,10 @@ radius = 0.044921875
 height = 0.15496826
 
 [sub_resource type="BoxMesh" id="BoxMesh_30eym"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_score"]
+height = 0.4
+radius = 0.75
 
 [node name="Hoop" type="StaticBody3D"]
 
@@ -99,3 +105,10 @@ shape = SubResource("CapsuleShape3D_tn8wj")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.20437962, 0, 0, 0, 0.073108025, 0, 0, 0, 0.51070035, -1.0365176, 0, 0)
 mesh = SubResource("BoxMesh_30eym")
+
+[node name="ScoreArea" type="Area3D" parent="."]
+script = ExtResource("1_score")
+
+[node name="CollisionShape3D_score" type="CollisionShape3D" parent="ScoreArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16258079, 0)
+shape = SubResource("CylinderShape3D_score")

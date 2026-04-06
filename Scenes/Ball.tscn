@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://o2ncryijnnlu"]
 
 [ext_resource type="PackedScene" uid="uid://bip51pwdc335t" path="res://Assets/Baskeball.glb" id="1_7nh6h"]
-[ext_resource type="Script" uid="uid://cqpt6uwj3oht1" path="res://Scenes/ball.gd" id="2_ball"]
+[ext_resource type="Script" uid="uid://cqpt6uwj3oht1" path="res://Scripts/ball.gd" id="2_ball"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7nh6h"]
 bounce = 0.8
