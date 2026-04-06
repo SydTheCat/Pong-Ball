@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://drv3eh5haopct"]
+
+[ext_resource type="Script" uid="uid://ct36lk0olhkpv" path="res://Scenes/paddle.gd" id="1_krcey"]
+[ext_resource type="ArrayMesh" uid="uid://bpwvbtfhs7gla" path="res://Assets/Paddle.obj" id="1_nxw3c"]
+[ext_resource type="Texture2D" uid="uid://bq3aaw63j20bv" path="res://Assets/wood.jpg" id="3_fe6ia"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5c43x"]
+albedo_color = Color(0.5716824, 0.39437076, 0.1683375, 1)
+metallic_specular = 0.41
+metallic_texture = ExtResource("3_fe6ia")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nxw3c"]
+size = Vector3(1.8188477, 0.13476563, 1.7905273)
+
+[node name="Paddle" type="CharacterBody3D"]
+script = ExtResource("1_krcey")
+
+[node name="Paddle" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_nxw3c")
+surface_material_override/0 = SubResource("StandardMaterial3D_5c43x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0031738281, 0, 0.0056152344)
+shape = SubResource("BoxShape3D_nxw3c")

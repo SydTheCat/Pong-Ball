@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://o2ncryijnnlu"]
+
+[ext_resource type="PackedScene" uid="uid://bip51pwdc335t" path="res://Assets/Baskeball.glb" id="1_7nh6h"]
+[ext_resource type="Script" uid="uid://cqpt6uwj3oht1" path="res://Scenes/ball.gd" id="2_ball"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7nh6h"]
+bounce = 0.8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_eb1ap"]
+
+[node name="Basketball" type="RigidBody3D"]
+mass = 0.3
+physics_material_override = SubResource("PhysicsMaterial_7nh6h")
+contact_monitor = true
+max_contacts_reported = 4
+script = ExtResource("2_ball")
+
+[node name="Baskeball" parent="." instance=ExtResource("1_7nh6h")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("SphereShape3D_eb1ap")

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmtydy1ojo7wv"]
+
+[ext_resource type="PackedScene" uid="uid://dph4f53nkq5qr" path="res://Assets/basketball_Court.glb" id="1_n36lv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n36lv"]
+size = Vector3(28.671051, 0.6016846, 15.215576)
+
+[node name="Court" type="StaticBody3D"]
+
+[node name="basketball_Court" parent="." instance=ExtResource("1_n36lv")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0001373291, -0.19915771, -0.00012207031)
+shape = SubResource("BoxShape3D_n36lv")

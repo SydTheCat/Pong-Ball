@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Scenes/ai_paddle.gd" id="1_ai"]
+[ext_resource type="ArrayMesh" uid="uid://bpwvbtfhs7gla" path="res://Assets/Paddle.obj" id="2_mesh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ai"]
+albedo_color = Color(0.8, 0.2, 0.2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ai"]
+size = Vector3(1.8188477, 0.13476563, 1.7905273)
+
+[node name="AIPaddle" type="CharacterBody3D"]
+script = ExtResource("1_ai")
+
+[node name="Paddle" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_mesh")
+surface_material_override/0 = SubResource("StandardMaterial3D_ai")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0031738281, 0, 0.0056152344)
+shape = SubResource("BoxShape3D_ai")
