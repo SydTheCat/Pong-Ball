@@ -1,21 +1,41 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=7 format=3 uid="uid://bupd88wtonrre"]
 
-[ext_resource type="Script" path="res://Scripts/ai_paddle.gd" id="1_ai"]
-[ext_resource type="ArrayMesh" uid="uid://bpwvbtfhs7gla" path="res://Assets/Paddle.obj" id="2_mesh"]
+[ext_resource type="Script" uid="uid://nrk20vgldxdu" path="res://Scripts/ai_paddle.gd" id="1_ai"]
+[ext_resource type="PackedScene" uid="uid://cecckr01lmgvt" path="res://Assets/RedBot.glb" id="2_y2bgw"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ai"]
-albedo_color = Color(0.8, 0.2, 0.2, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_7k45u"]
+size = Vector3(0.7163086, 1.8097229, 1.440918)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ai"]
-size = Vector3(1.8188477, 0.13476563, 1.7905273)
+[sub_resource type="BoxShape3D" id="BoxShape3D_6qnuq"]
+size = Vector3(0.74554443, 0.7977295, 0.6928711)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lsd0u"]
+size = Vector3(0.41064453, 1.7458344, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_y2bgw"]
+radius = 1.5
 
 [node name="AIPaddle" type="CharacterBody3D"]
+transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 0.9999998, 0, 0, 0)
 script = ExtResource("1_ai")
 
-[node name="Paddle" type="MeshInstance3D" parent="."]
-mesh = ExtResource("2_mesh")
-surface_material_override/0 = SubResource("StandardMaterial3D_ai")
+[node name="RedBot" parent="." instance=ExtResource("2_y2bgw")]
+transform = Transform3D(4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, 4.3711385e-08, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0031738281, 0, 0.0056152344)
-shape = SubResource("BoxShape3D_ai")
+transform = Transform3D(-0.9999999, 0, 8.742276e-08, 0, 1, 0, -8.742276e-08, 0, -0.9999999, -0.3207974, 0.91063964, 0.0017342735)
+shape = SubResource("BoxShape3D_7k45u")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.9999999, 0, 8.742276e-08, 0, 1, 0, -8.742276e-08, 0, -0.9999999, -0.312201, 1.9929802, 0.0031443832)
+shape = SubResource("BoxShape3D_6qnuq")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.8038672, -0.59480864, 1.2511033e-07, -0.59480876, 0.80386716, 2.769794e-10, -7.039142e-08, -5.1844243e-08, -1.4310955, 0.14241679, 0.8382924, 0.0039104037)
+shape = SubResource("BoxShape3D_lsd0u")
+
+[node name="GrabArea" type="Area3D" parent="."]
+transform = Transform3D(0.49999997, 0, 0, 0, 0.5, 0, 0, 0, 0.49999997, 0.7972461, 1.5541992, 0)
+
+[node name="GrabShape" type="CollisionShape3D" parent="GrabArea"]
+shape = SubResource("SphereShape3D_y2bgw")

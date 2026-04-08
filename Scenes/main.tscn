@@ -1,12 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://b0lj3t16ji65l"]
+[gd_scene load_steps=13 format=3 uid="uid://b0lj3t16ji65l"]
 
 [ext_resource type="PackedScene" uid="uid://bmtydy1ojo7wv" path="res://Scenes/Court.tscn" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://o2ncryijnnlu" path="res://Scenes/Ball.tscn" id="2_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://drv3eh5haopct" path="res://Scenes/paddle.tscn" id="3_8gbba"]
-[ext_resource type="PackedScene" path="res://Scenes/ai_paddle.tscn" id="4_aiplr"]
+[ext_resource type="PackedScene" uid="uid://bupd88wtonrre" path="res://Scenes/ai_paddle.tscn" id="4_aiplr"]
 [ext_resource type="PackedScene" uid="uid://v6kp0v3dpwrb" path="res://Scenes/Hoop.tscn" id="5_kry3j"]
 [ext_resource type="PackedScene" path="res://Scenes/HUD.tscn" id="6_hud"]
 [ext_resource type="Script" uid="uid://bwv641lhxp4aq" path="res://Scripts/game.gd" id="7_game"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wall"]
+bounce = 0.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wallx"]
 size = Vector3(0.5, 20, 15.2)
@@ -35,30 +38,25 @@ visible = false
 shadow_enabled = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.019367, 15.384513, 0)
-light_energy = 9.247
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.019367, 17.282585, 0)
+light_energy = 6.0
 shadow_enabled = true
 omni_range = 19.88409
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.009354, 15.384513, 0)
-light_energy = 9.247
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.009354, 17.282585, 0)
+light_energy = 6.0
 shadow_enabled = true
 omni_range = 19.88409
 
 [node name="Court" parent="." instance=ExtResource("1_jjgbg")]
 
 [node name="Node3D" parent="." instance=ExtResource("2_bo1nx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.030764269, 4.7096586, -0.19337845)
-
-[node name="Paddle" parent="." instance=ExtResource("3_8gbba")]
-transform = Transform3D(1, 0, 0, 0, 3.3302283, 0, 0, 0, 1, -0.05701437, 0.5872303, 0.019854069)
-
-[node name="AIPaddle" parent="." instance=ExtResource("4_aiplr")]
-transform = Transform3D(1, 0, 0, 0, 3.3302283, 0, 0, 0, 1, -7, 0.5872303, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.030764269, 7.633353, -0.19337845)
 
 [node name="WallLeft" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.35, 10, 0)
+physics_material_override = SubResource("PhysicsMaterial_wall")
 
 [node name="WallLeftCollision" type="CollisionShape3D" parent="WallLeft"]
 shape = SubResource("BoxShape3D_wallx")
@@ -69,6 +67,7 @@ mesh = SubResource("BoxMesh_8gbba")
 
 [node name="WallRight" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.35, 10, 0)
+physics_material_override = SubResource("PhysicsMaterial_wall")
 
 [node name="WallRightCollision" type="CollisionShape3D" parent="WallRight"]
 shape = SubResource("BoxShape3D_wallx")
@@ -80,6 +79,7 @@ skeleton = NodePath("../../WallLeft")
 
 [node name="WallFront" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -7.6)
+physics_material_override = SubResource("PhysicsMaterial_wall")
 
 [node name="WallFrontCollision" type="CollisionShape3D" parent="WallFront"]
 shape = SubResource("BoxShape3D_wallz")
@@ -91,18 +91,28 @@ skeleton = NodePath("../../WallLeft")
 
 [node name="WallBack" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 7.6)
+physics_material_override = SubResource("PhysicsMaterial_wall")
 
 [node name="WallBackCollision" type="CollisionShape3D" parent="WallBack"]
 shape = SubResource("BoxShape3D_wallz")
 
 [node name="WallBack2" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -3.538146e-08, -0.99999994, 0, 0.8094335, -4.3711385e-08, 0, 19.945156, -0.020481586)
+physics_material_override = SubResource("PhysicsMaterial_wall")
 
 [node name="WallBackCollision" type="CollisionShape3D" parent="WallBack2"]
 shape = SubResource("BoxShape3D_wallz")
 
 [node name="Hoop" parent="." instance=ExtResource("5_kry3j")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -11.797811, 4.387269, -0.0053606033)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -11.041674, 6.8898773, -0.0053606033)
+physics_material_override = null
 
 [node name="Hoop2" parent="." instance=ExtResource("5_kry3j")]
-transform = Transform3D(-2, 0, -1.7484555e-07, 0, 2, 0, 1.7484555e-07, 0, -2, 11.79939, 4.387269, -0.0053606033)
+transform = Transform3D(-2, 0, -1.7484555e-07, 0, 2, 0, 1.7484555e-07, 0, -2, 11.095303, 6.8898773, -0.0053606033)
+physics_material_override = null
+
+[node name="Paddle" parent="." instance=ExtResource("3_8gbba")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 5, 0.25, 0)
+
+[node name="AIPaddle" parent="." instance=ExtResource("4_aiplr")]
+transform = Transform3D(1.5, 0, 0, 0, 1.4999999, 0, 0, 0, 1.5, -5, 0.25, 0)

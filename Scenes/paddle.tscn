@@ -1,24 +1,54 @@
-[gd_scene load_steps=6 format=3 uid="uid://drv3eh5haopct"]
+[gd_scene load_steps=9 format=3 uid="uid://drv3eh5haopct"]
 
 [ext_resource type="Script" uid="uid://ct36lk0olhkpv" path="res://Scripts/paddle.gd" id="1_krcey"]
-[ext_resource type="ArrayMesh" uid="uid://bpwvbtfhs7gla" path="res://Assets/Paddle.obj" id="1_nxw3c"]
-[ext_resource type="Texture2D" uid="uid://bq3aaw63j20bv" path="res://Assets/wood.jpg" id="3_fe6ia"]
+[ext_resource type="PackedScene" uid="uid://dho6ebsv1s174" path="res://Assets/PlayerBot1.glb" id="2_krcey"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5c43x"]
-albedo_color = Color(0.5716824, 0.39437076, 0.1683375, 1)
-metallic_specular = 0.41
-metallic_texture = ExtResource("3_fe6ia")
+[sub_resource type="BoxShape3D" id="BoxShape3D_krcey"]
+size = Vector3(0.7163086, 1.8097229, 1.440918)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_nxw3c"]
-size = Vector3(1.8188477, 0.13476563, 1.7905273)
+[sub_resource type="BoxShape3D" id="BoxShape3D_fe6ia"]
+size = Vector3(0.74554443, 0.7977295, 0.6928711)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5c43x"]
+size = Vector3(0.41064453, 1.7458344, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_grab"]
+radius = 1.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_krcey"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fe6ia"]
+transparency = 1
+albedo_color = Color(3.3208227, 4.9612775, 0, 0.019607844)
+roughness = 0.0
 
 [node name="Paddle" type="CharacterBody3D"]
 script = ExtResource("1_krcey")
 
-[node name="Paddle" type="MeshInstance3D" parent="."]
-mesh = ExtResource("1_nxw3c")
-surface_material_override/0 = SubResource("StandardMaterial3D_5c43x")
+[node name="PlayerBot1" parent="." instance=ExtResource("2_krcey")]
+transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0031738281, 0, 0.0056152344)
-shape = SubResource("BoxShape3D_nxw3c")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42244333, 0.91063964, 0.005126953)
+shape = SubResource("BoxShape3D_krcey")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.41385603, 1.9929802, 0.0036621094)
+shape = SubResource("BoxShape3D_fe6ia")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.8038672, 0.59480876, 0, -0.59480876, 0.8038672, 0, 0, 0, 1.4310956, -0.04074771, 0.8382924, 0)
+shape = SubResource("BoxShape3D_5c43x")
+
+[node name="GrabArea" type="Area3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.7756958, 1.5541992, 0)
+
+[node name="GrabShape" type="CollisionShape3D" parent="GrabArea"]
+shape = SubResource("SphereShape3D_grab")
+
+[node name="GrabGlow" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.776, 1.554, 0)
+visible = false
+gi_lightmap_texel_scale = 3.0598
+mesh = SubResource("SphereMesh_krcey")
+surface_material_override/0 = SubResource("StandardMaterial3D_fe6ia")

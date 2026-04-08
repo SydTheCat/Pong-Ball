@@ -14,5 +14,7 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is RigidBody3D and body.linear_velocity.y < -0.5 and cooldown <= 0:
-		emit_signal("scored")
-		cooldown = SCORE_COOLDOWN
+		# Only score if ball is above the score area (entered from top, not bottom)
+		if body.global_position.y > global_position.y:
+			emit_signal("scored")
+			cooldown = SCORE_COOLDOWN
